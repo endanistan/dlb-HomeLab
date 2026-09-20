@@ -39,7 +39,7 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | `CA1` | 20 | AD CS (PKI) | Enterprise Certificate Authority |
 | `CA-CRL1` | 20 | IIS Web Server | Standalone HTTP endpoint publishing `CA1` Certificate Revocation List (CRL) |
 | `DSC1` | 20 | IaC / Automation | PowerShell DSC Pull Server using DFS repository & GPO targeting |
-| `VPN1` | 15, 20 | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
+| `VPN1` | 15 | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
 | `NPS1` | 20 | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
 | `WACGW1` | 15 | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
 | `AUTO1` | 15 | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
