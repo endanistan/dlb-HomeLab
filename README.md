@@ -37,7 +37,7 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | `FS1` | ws25 Server Core | File Services | DFS-N (`\\Contoso\Data Files`), DFS-R, Data Deduplication, FSRM |
 | `FS2` | ws25 Server Core | File Services | DFS-R replication partner to `FS1` |
 | `CA1` | ws25 Server Core | AD CS (PKI) | Enterprise Certificate Authority |
-| `CA-CRL1` | ws2025 Server Core | IIS Web Server | Standalone HTTP endpoint publishing CA1 Certificate Revocation List (CRL) |
+| `CA-CRL1` | ws2025 Server Core | IIS Web Server | Standalone HTTP endpoint publishing `CA1` Certificate Revocation List (CRL) |
 | `DSC1` | ws25 Server Core | IaC / Automation | PowerShell DSC Pull Server using DFS repository & GPO targeting |
 | `VPN1` | ws25 Server Core | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
 | `NPS1` | ws25 Desktop Experience | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
