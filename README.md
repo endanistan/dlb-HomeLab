@@ -32,8 +32,8 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | :--- | :--- | :--- | :--- |
 | `DC1` | ws25 Server Core | AD DS, DNS | FSMO Roles: Schema Master, Domain Naming Master |
 | `DC2` | ws25 Server Core | AD DS, DNS | FSMO Roles: PDC Emulator, RID Master, Infrastructure Master |
-| `DHCP1` ws25 Server Core | DHCP Server | Primary DHCP server (Active/Standby relationship) |
-| `DHCP2` ws25 Server Core | DHCP Server | Hot Standby failover partner to `DHCP1` |
+| `DHCP1` | ws25 Server Core | DHCP Server | Primary DHCP server (Active/Standby relationship) |
+| `DHCP2` | ws25 Server Core | DHCP Server | Hot Standby failover partner to `DHCP1` |
 | `FS1` | ws25 Server Core | File Services | DFS-N (`\\Contoso\Data Files`), DFS-R, Data Deduplication, FSRM |
 | `FS2` | ws25 Server Core | File Services | DFS-R replication partner to `FS1` |
 | `CA1` | ws25 Server Core | AD CS (PKI) | Enterprise Certificate Authority |
