@@ -22,6 +22,8 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
   * **Gateway:** Inter-VLAN routing, firewall policies, and security segmentation.
   * **Switching & AP:** 2x Managed Switches, 1x Access Point.
 
+![PowerShell Banner](images/network schema.jpeg)
+
 ---
 
 ## Virtual Machines & Workloads
