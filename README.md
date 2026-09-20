@@ -43,8 +43,8 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | `NPS1` | 20 | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
 | `WACGW1` | 15 | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
 | `AUTO1` | 15 | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
-| `HVH1` | 10 | Hypervisor Platform |
-| `HVH2` | 10 | Hypervisor Platform |
+| `HVH1` | 10 | Hyper-V |Hypervisor Platform |
+| `HVH2` | 10 | Hyper-V | Hypervisor Platform |
 
 ---
 
