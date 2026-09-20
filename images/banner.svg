@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 380" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+
+    <style>
+      .terminal-header { font-family: 'Segoe UI', sans-serif; font-size: 12px; fill: #cccccc; font-weight: 400; }
+      .code { font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 14px; line-height: 1.6; }
+      .prompt { fill: #27c93f; font-weight: bold; }
+      .path { fill: #35a7ff; }
+      .cmd { fill: #f3f99d; font-weight: bold; }
+      .param { fill: #9aedfe; }
+      .string { fill: #5af78e; }
+      .var { fill: #ff6ac1; }
+      .op { fill: #ff5c57; }
+      .table-head { fill: #57c7ff; font-weight: bold; }
+      .table-row { fill: #eff0f1; }
+      .win-icon { fill: #ffffff; opacity: 0.8; }
+      .close-btn:hover { fill: #e81123; }
+    </style>
+  </defs>
+
+  <rect x="20" y="20" width="910" height="340" rx="8" ry="8" fill="#0c1017" stroke="#2b313a" stroke-width="1" filter="url(#shadow)" />
+
+  <path d="M 20 28 Q 20 20 28 20 L 922 20 Q 930 20 930 28 L 930 55 L 20 55 Z" fill="#1f242d" />
+  <line x1="20" y1="55" x2="930" y2="55" stroke="#2b313a" stroke-width="1" />
+
+
+  <g transform="translate(35, 32)">
+
+    <path class="win-icon" d="M2,2 L10,7 L2,12 L1,10 L7,7 L1,4 Z M9,11 L15,11 L15,13 L9,13 Z" fill="#35a7ff" />
+    <text x="24" y="11" class="terminal-header">Administrator: PowerShell 7</text>
+  </g>
+
+  <g transform="translate(810, 20)">
+
+    <rect x="0" y="0" width="40" height="35" fill="transparent" />
+    <line x1="15" y1="18" x2="25" y2="18" stroke="#ffffff" stroke-width="1" />
+    
+    <rect x="40" y="0" width="40" height="35" fill="transparent" />
+    <rect x="55" y="13" width="10" height="10" fill="none" stroke="#ffffff" stroke-width="1" />
+    
+    <path class="close-btn" d="M80,0 L120,0 Q120,20 120,20 L120,35 L80,35 Z" fill="transparent" />
+    <line x1="95" y1="13" x2="105" y2="23" stroke="#ffffff" stroke-width="1" />
+    <line x1="105" y1="13" x2="95" y2="23" stroke="#ffffff" stroke-width="1" />
+  </g>
+
+  <g transform="translate(45, 90)" class="code">
+    
+    <text x="0" y="0">
+      <tspan class="prompt">PS</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="path">C:\&gt;</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="cmd">Get-ADUser</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="param">-SearchBase</tspan>
+      <tspan class="string"> "OU=Stockholm,DC=Sweden,DC=Local"</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="op">`</tspan>
+    </text>
+
+    <text x="25" y="26">
+      <tspan class="param">-Filter</tspan>
+      <tspan class="string"> {Title -eq "Systemadministrator" -and Available -eq $true}</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="param">-Properties</tspan>
+      <tspan fill="#cccccc"> * </tspan>
+      <tspan class="op">|</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="op">`</tspan>
+    </text>
+
+    <text x="25" y="52">
+      <tspan class="cmd">Select-Object</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="param">DisplayName,</tspan>
+      <tspan class="param">EmailAddress</tspan>
+      <tspan fill="#cccccc"> </tspan>
+      <tspan class="param">-First</tspan>
+      <tspan class="var"> 1</tspan>
+    </text>
+
+
+    <g transform="translate(0, 100)">
+
+      <text x="0" y="0" class="table-head">
+        <tspan x="0">DisplayName</tspan>
+        <tspan x="320">EmailAddress</tspan>
+      </text>
+      
+      <text x="0" y="16" fill="#484f58">
+        <tspan x="0">-----------</tspan>
+        <tspan x="320">------------</tspan>
+      </text>
+
+      <text x="0" y="42" class="table-row">
+        <tspan x="0" font-weight="bold">Daniel Berg</tspan>
+        <tspan x="320" fill="#5af78e">daniel.berg1991@gmail.com</tspan>
+      </text>
+    </g>
+
+    <g transform="translate(0, 205)">
+      <text x="0" y="0">
+        <tspan class="prompt">PS</tspan>
+        <tspan fill="#cccccc"> </tspan>
+        <tspan class="path">C:\&gt;</tspan>
+        <tspan fill="#cccccc"> </tspan>
+      </text>
+
+      <rect x="70" y="-13" width="8" height="17" fill="#eff0f1" opacity="0.85">
+        <animate attributeName="opacity" values="0.85;0;0.85" dur="1s" repeatCount="indefinite" />
+      </rect>
+    </g>
+
+  </g>
+</svg>
