@@ -95,8 +95,7 @@
     <text x="25" y="78">
       <tspan class="cmd">Select-Object</tspan>
       <tspan fill="#cccccc"> </tspan>
-      <tspan class="param">DisplayName</tspan>
-      <tspan fill="#cccccc">, </tspan>
+      <tspan class="param">DisplayName, </tspan>
       <tspan class="param">EmailAddress</tspan>
       <tspan fill="#cccccc"> </tspan>
       <tspan class="param">-First</tspan>
