@@ -1,0 +1,31 @@
+Begin {
+        $GroupName = "Marketing users"
+        $OU = "OU=Marketing users,OU=Users,OU=contoso,DC=contoso,DC=com"
+        $Date = (Get-Date -Format yyyy-MM)
+        $LogFile = "C:\Scripts\LogFiles\SYNC_MARKETING_USERS_$Date.log"
+
+
+        if (-not (Test-Path $LogFile)) {
+                New-Item -Path $LogFile -Force
+        }
+
+        Start-Transcript -Path $LogFile -Append
+}
+
+Process {
+        $s = New-PSSession -ComputerName "dc1.contoso.com" -ConfigurationName "MyJEA-Endpoint" -UseSSL
+
+        Invoke-Command -Session $s -ScriptBlock {
+                param (
+                        [string]$GroupName,
+                        [string]$OU
+                )
+
+                Invoke-SyncOUToAdGroupMembership -GroupName $GroupName -OU $OU
+        } -ArgumentList $GroupName, $OU
+}
+
+End {
+        Disconnect-Session -Session $s
+        Stop-Transcript
+}
