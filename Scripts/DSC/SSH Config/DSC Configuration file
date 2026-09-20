@@ -1,0 +1,98 @@
+# Reference to \\contoso.com\Data Files\DSC is my solution to host data files or installation media required for the DSC node to complete the desired state.
+# \\contoso.com\Data Files is a DFS Namespace in which the DSC nodes ADComputer object has read and execute access to.
+
+Configuration sshdNode {
+	Import-DscResource -ModuleName "PSDesiredStateConfiguration"
+	Node "sshdNode" {
+		Service DSC-Run-SSHD {
+			Name           = "sshd"
+			BuiltInAccount = "LocalSystem"
+			Ensure         = "Present"
+			StartupType    = "Automatic"
+			State          = "Running"
+		}
+
+		Script AllowTCPSSHIn {
+			GetScript = {
+				$rule = Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue
+				@{ Result = "Enabled: $($rule.Enabled) | Profile: $($rule.Profile)" }
+			}
+
+			TestScript = {
+				$rule = Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue
+
+				if ($null -eq $rule) { return $false }
+
+				if ($rule.Enabled -ne "True") { return $false }
+
+				if ($rule.Profile -notmatch "Domain") { return $false }
+
+				return $true
+			}
+
+			SetScript  = {
+				Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -Enabled True -Profile Domain
+			}
+		}
+
+		Script PowerShellCore {
+			GetScript  = {
+				@{ Result = Test-Path -Path "$env:ProgramFiles\Powershell\7\pwsh.exe" }
+			}
+
+			TestScript = {
+				return (Test-Path -Path "$env:ProgramFiles\Powershell\7\pwsh.exe")
+			}
+
+			SetScript  = {
+				try {
+					Copy-Item -Path "\\contoso.com\Data Files\DSC\PowerShell-7.6.1-win-x64.msi" -Destination "$env:TEMP\PowerShell-7.6.1-win-x64.msi"
+				} catch {
+					throw "Failed to copy PowerShell MSI. Exception message: $($_.Exception)"
+				}
+
+				$findMsiStartTime = (Get-Date)
+				do {
+					$findMsi = Test-Path -Path "$env:TEMP\PowerShell-7.6.1-Win-x64.msi"
+					if ($findMsi) {
+						break
+					}
+					Start-Sleep -Seconds 30
+				} while (($findMsiStartTime).AddMinutes(10) -gt (Get-Date))
+
+				if (!$findMsi) {
+					throw "Unable to find MSI after a 10 minute re-try"
+				}
+				$process = Start-Process `
+					-FilePath "$env:Windir\System32\msiexec.exe" `
+					-ArgumentList "/i `"$env:TEMP\PowerShell-7.6.1-win-x64.msi`" /qn" `
+					-PassThru `
+					-Wait
+
+				if ($process.ExitCode -ne 0) {
+					throw "Failed to install PowerShell MSI. Exit code: $($process.ExitCode)"
+				}
+
+				Remove-Item -Path "$env:TEMP\PowerShell-7.6.1-win-x64.msi" -Force
+			}
+		}
+
+		Registry SetOpenSSHDefaultShell {
+			Key       = "HKLM:\Software\OpenSSH"
+			ValueName = "DefaultShell"
+			ValueData = "C:\PROGRA~1\PowerShell\7\pwsh.exe"
+			ValueType = "String"
+			Ensure    = "Present"
+			Force     = $true
+		}
+
+		File SshdConfigFile {
+			Ensure          = "Present"
+			DestinationPath = "C:\ProgramData\ssh\sshd_config"
+			SourcePath      = "\\contoso.com\Data Files\DSC\sshd_config"
+			MatchSource     = $true
+		}
+	}
+}
+
+sshdNode -OutputPath "C:\Temp\DscBuild"
