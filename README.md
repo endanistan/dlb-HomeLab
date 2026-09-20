@@ -28,21 +28,23 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 
 ## Virtual Machines & Workloads
 
-| Hostname | OS | Role / Services | Key Architectural Details |
+| Hostname | VLAN | Role / Services | Key Architectural Details |
 | :--- | :--- | :--- | :--- |
-| `DC1` | ws25 Server Core | AD DS, DNS | FSMO Roles: Schema Master, Domain Naming Master |
-| `DC2` | ws25 Server Core | AD DS, DNS | FSMO Roles: PDC Emulator, RID Master, Infrastructure Master |
-| `DHCP1` | ws25 Server Core | DHCP Server | Primary DHCP server (Active/Standby relationship) |
-| `DHCP2` | ws25 Server Core | DHCP Server | Hot Standby failover partner to `DHCP1` |
-| `FS1` | ws25 Server Core | File Services | DFS-N (`\\Contoso\Data Files`), DFS-R, Data Deduplication, FSRM |
-| `FS2` | ws25 Server Core | File Services | DFS-R replication partner to `FS1` |
-| `CA1` | ws25 Server Core | AD CS (PKI) | Enterprise Certificate Authority |
-| `CA-CRL1` | ws2025 Server Core | IIS Web Server | Standalone HTTP endpoint publishing `CA1` Certificate Revocation List (CRL) |
-| `DSC1` | ws25 Server Core | IaC / Automation | PowerShell DSC Pull Server using DFS repository & GPO targeting |
-| `VPN1` | ws25 Server Core | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
-| `NPS1` | ws25 Desktop Experience | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
-| `WACGW1` | ws25 Server Core | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
-| `AUTO1` | ws25 Server Core | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
+| `DC1` | 20 | AD DS, DNS | FSMO Roles: Schema Master, Domain Naming Master |
+| `DC2` | 20 | AD DS, DNS | FSMO Roles: PDC Emulator, RID Master, Infrastructure Master |
+| `DHCP1` | 20 | DHCP Server | Primary DHCP server (Active/Standby relationship) |
+| `DHCP2` | 20 | DHCP Server | Hot Standby failover partner to `DHCP1` |
+| `FS1` | 20 | File Services | DFS-N (`\\Contoso\Data Files`), DFS-R, Data Deduplication, FSRM |
+| `FS2` | 20 | File Services | DFS-R replication partner to `FS1` |
+| `CA1` | 20 | AD CS (PKI) | Enterprise Certificate Authority |
+| `CA-CRL1` | 20 Core | IIS Web Server | Standalone HTTP endpoint publishing `CA1` Certificate Revocation List (CRL) |
+| `DSC1` | 20 | IaC / Automation | PowerShell DSC Pull Server using DFS repository & GPO targeting |
+| `VPN1` | 15, 20 | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
+| `NPS1` | 20 | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
+| `WACGW1` | 15 | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
+| `AUTO1` | 15 | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
+| `HVH1` | 10 | Hypervisor Platform |
+| `HVH2` | 10 | Hypervisor Platform |
 
 ---
 
