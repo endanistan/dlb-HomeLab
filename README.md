@@ -42,6 +42,7 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | `VPN1` | ws25 Server Core | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
 | `NPS1` | ws25 Desktop Experience | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
 | `WACGW1` | ws25 Server Core | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
+| `AUTO1` | ws25 Server Core | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
 
 ---
 
