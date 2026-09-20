@@ -1,4 +1,4 @@
-![PowerShell Banner](images/powershell-banner.svg)
+![PowerShell Banner](images/banner.svg)
 # dlb-HomeLab
 My Homelab overview
 
