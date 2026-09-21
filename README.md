@@ -1,6 +1,6 @@
 ![PowerShell Banner](images/banner.svg)
 # dlb-HomeLab
-My Homelab overview
+Welcome to my windows server home lab overview. I love everything Windows server and PowerShell. 
 
 # Infrastructure Homelab & Enterprise Architecture
 
@@ -52,10 +52,11 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 
 ### Administration & Operations
 * **Remote Management:** Restricted to WinRM over HTTPS (TCP 5986), SSH, and Windows Admin Center (WACv2).
-* **Configuration Management:** PowerShell Desired State Configuration (DSC) Pull Server backed by Group Policy Preferences.
+* **Configuration Management:** PowerShell Desired State Configuration (DSC) Pull Server backed by Group Policy Preferences, and a script-runner VM.
+* **Windows native:** Limited to on-premises, self-hosted, windows native solutions. Using PowerShell to bridge the gap between classic windows services and modern cloud solutions.
 
 ### Security Hardening & Identity
 * **Least Privilege:** Just Enough Administration (JEA) endpoints configured for delegated service management.
 * **Identity & Service Accounts:** Group Managed Service Accounts (gMSA) utilized for automated services.
+* **VLAN Segmentation:** Segmented network to reduce potential blast radius and to adhere to least privillege access.
 * **Public Key Infrastructure:** Full AD CS environment enforcing certificate-based and Kerberos authentication across networks.
-
