@@ -1,5 +1,11 @@
 # Reference to \\contoso.com\Data Files\DSC is my solution to host data files or installation media required for the DSC node to complete the desired state.
-# \\contoso.com\Data Files is a DFS Namespace in which the DSC nodes ADComputer object has read and execute access to.
+# \\contoso.com\Data Files\DSC is a DFS Namespace in which the DSC nodes ADComputer object has read and execute access to.
+
+# DefaultShell reg key pointing to C:\PROGRA~1\PowerShell\7\pwsh.exe is required for connecting using ssh user@server.contoso.com.
+# The subsystem entry for powershell C:\PROGRA~1\PowerShell\7\pwsh.exe is required for when connecting using the Enter-PSSession -Hostname cmdlet.
+
+# Note that this configuration file does not manage the administrator_authorizedkeys file.
+# The administrator_authorizedkeys file, has to have strict ACL configuration limited to full control for: .\Administrator and NT Authority\System with no other references.
 
 Configuration sshdNode {
 	Import-DscResource -ModuleName "PSDesiredStateConfiguration"
