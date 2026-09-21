@@ -1,0 +1,29 @@
+# function exposed in JEA configuration file and is automatically loaded into the session when a connection is made through the endpoint.
+
+function Invoke-SyncOUToAdGroupMembership {
+        param (
+                [string]$groupName,
+                [string]$OU
+        )
+        $report = @{}
+        $desiredMembers = Get-ADUser `
+                -SearchBase $OU `
+                -Filter {Enabled -eq $true}
+
+        $currentMembers = Get-ADGroupMember `
+                -Identity $groupName
+
+        Compare-Object $desiredMembers.sAMAccountName $currentMembers.sAMAccountName | ForEach-Object {
+                $user = $_.InputObject
+                if ($_.SideIndicator -eq "=>") {
+                        Remove-ADGroupMember -Identity $groupName -Members $user -Confirm:$false
+                        $report[$user] = "Removed"
+                }
+
+                if ($_.SideIndicator -eq "<=") {
+                        Add-ADGroupMember -Identity $groupName -Members $user
+                        $report[$user] = "Added"
+                }
+        }
+        return $report
+}
