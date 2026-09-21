@@ -26,6 +26,6 @@ Process {
 }
 
 End {
-        Disconnect-Session -Session $s
+        Remove-PSSession -Session $s
         Stop-Transcript
 }
