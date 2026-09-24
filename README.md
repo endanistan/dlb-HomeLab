@@ -1,6 +1,8 @@
 ![PowerShell Banner](images/banner.svg)
 # dlb-HomeLab
-Welcome to my windows server home lab overview. I love everything Windows server and PowerShell. 
+Welcome to my windows server home lab overview. I love everything Windows server and PowerShell.
+
+A couple of Just Enough Administration (JEA) and Desired State Configuration (DSC) scripts are included in the /Scripts/ directory.
 
 # Infrastructure Homelab & Enterprise Architecture
 
