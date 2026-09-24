@@ -42,6 +42,7 @@ A production-aligned Windows Server and networking lab built with a focus on Hig
 | `VPN1` | 15 | RRAS / Remote Access | P2S IKEv2 Tunnel, Let's Encrypt TLS, RADIUS auth via `NPS1` |
 | `NPS1` | 20 | Network Policy Server | RADIUS Server enforcing EAP-TLS (User & Device certs) for VPN & Wi-Fi |
 | `WACGW1` | 21 | Management Gateway | Windows Admin Center v2 gateway over WinRM HTTPS (Kerberos) |
+| `WEC1` | 20 | Windows Event Collector | Centralized logmanagement for Active Directory |
 | `AUTO1` | 21 | Script Automator Platform | Uses PowerShell scripts and Just Enough Administration endpoints to automate active directory state |
 | `HVH1` | 10 | Hyper-V |Hypervisor Platform |
 | `HVH2` | 10 | Hyper-V | Hypervisor Platform |
